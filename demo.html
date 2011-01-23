@@ -3,6 +3,14 @@
   <head>
     <meta charset="utf-8">
     <title>Duostack Socket.IO Demo</title>
+    <script src="http://cdn.socket.io/stable/socket.io.js"></script>
+    <script>
+      socket = new io.Socket();
+      socket.connect();
+      socket.on('message', function(data){
+        document.getElementById('time').innerHTML = data;
+      });
+    </script>
   </head>
   <body>
     <p>If a time updating once per second, then it works!</p>

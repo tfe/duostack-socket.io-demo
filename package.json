@@ -10,5 +10,8 @@
   },
   "engines": {
     "node": "*"
+  },
+  "dependencies": {
+    "socket.io": "*"
   }
 }
