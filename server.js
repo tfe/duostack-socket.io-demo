@@ -1,7 +1,8 @@
-var http = require('http'),
-    fs = require('fs'),
-    io = require('socket.io');
+var http = require('http'),     // needed to create the server
+    fs = require('fs'),         // needed to read the template html file that gets returned upon requests
+    io = require('socket.io');  // socket.io for demonstration
 
+// simple http server that just returns the contents of demo.html on every connection
 var server = http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/html'});
   fs.readFile('demo.html', function (err, data) {
@@ -17,7 +18,11 @@ console.log('Server started');
 // socket.io stuff
 /////////////////////////////////////////////////////////////////////////////
 
-// set some config options for Duostack: no flash policy server, no websocket or flashsocket transports
+// set up socket.io on our existing server object.
+// this will listen for requests under the /socket.io path and handle them.
+// we also also set some config options for Duostack:
+//  - no flash policy server
+//  - no websocket or flashsocket transports
 var socket = io.listen(server, {
   flashPolicyServer: false,
   transports: ['htmlfile', 'xhr-multipart', 'xhr-polling', 'jsonp-polling']
