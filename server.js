@@ -20,13 +20,7 @@ console.log('Server started');
 
 // set up socket.io on our existing server object.
 // this will listen for requests under the /socket.io path and handle them.
-// we also also set some config options for Duostack:
-//  - no flash policy server
-//  - no websocket or flashsocket transports
-var socket = io.listen(server, {
-  flashPolicyServer: false,
-  transports: ['htmlfile', 'xhr-multipart', 'xhr-polling', 'jsonp-polling']
-});
+var socket = io.listen(server);
 
 // fires on every new client connection
 socket.on('connection', function (client) {
