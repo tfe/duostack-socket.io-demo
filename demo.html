@@ -5,8 +5,16 @@
     <title>Duostack Socket.IO Demo</title>
     <script src="http://cdn.socket.io/stable/socket.io.js"></script>
     <script>
-      socket = new io.Socket();
+      // Set up the socket with the hostname ('null' will use the same host as
+      // the page itself) and our configuration.
+      // We only have one config option, and it's only necessary because this is
+      // a demo app and we want socket.io to select a transport on each visit.
+      var config = { rememberTransport: false },
+          socket = new io.Socket(null, config);
+      
       socket.connect();
+      
+      // each message will be a new time, so just insert it directly
       socket.on('message', function(data){
         document.getElementById('time').innerHTML = data;
       });
