@@ -6,10 +6,10 @@
     <script src="http://cdn.socket.io/stable/socket.io.js"></script>
     <script>
       // Set up the socket with the hostname ('null' will use the same host as
-      // the page itself) and our configuration.
-      // We only have one config option, and it's only necessary because this is
-      // a demo app and we want socket.io to select a transport on each visit.
-      var config = { rememberTransport: false },
+      // the page itself) and with WebSocket as the only transport. All
+      // connections will use WebSocket, if supported. If not supported, no
+      // connection will be made.
+      var config = { transports: ['websocket'] },
           socket = new io.Socket(null, config);
       
       socket.connect();

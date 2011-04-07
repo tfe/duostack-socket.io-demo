@@ -20,7 +20,10 @@ console.log('Server started');
 
 // set up socket.io on our existing server object.
 // this will listen for requests under the /socket.io path and handle them.
-var socket = io.listen(server);
+// we only allow the websocket transport.
+var socket = io.listen(server, {
+  transports: ['websocket']
+});
 
 // fires on every new client connection
 socket.on('connection', function (client) {
